@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Clarus: AI patient follow-up for clinics",
+    "description": "Clarus turns lab results and missed appointments into automatic follow-ups by WhatsApp, SMS or AI voice call, and books the next visit straight into your calendar."
+  },
+  "nav": {
+    "howItWorks": "How it works",
+    "safety": "Safety",
+    "pricing": "Pricing",
+    "about": "About",
+    "joinPilot": "Join the pilot",
+    "language": "Language",
+    "menu": "Menu",
+    "home": "Clarus home",
+    "skip": "Skip to content"
+  },
+  "hero": {
+    "eyebrow": "AI patient follow-up for clinics",
+    "title": "Every follow‑up made. Every free slot filled.",
+    "sub": "Clarus turns lab results and missed appointments into automatic follow-ups by WhatsApp, SMS or AI voice call, and books the next visit straight into your calendar.",
+    "ctaPrimary": "Join the founding pilot",
+    "ctaSecondary": "Hear a call",
+    "caption": "Product demo · patient details are fictional.",
+    "checking": "Checking free slots…",
+    "toast": "Thu 10:30 booked · added to calendar",
+    "facts": "Bangla · Arabic · English|8 safety checks per call|Books into your calendar"
+  },
+  "demo": {
+    "play": "Play the demo",
+    "pause": "Pause the demo",
+    "replay": "Replay",
+    "speed": "Speed",
+    "language": "Call language",
+    "audioSoon": "Audio coming soon. The call plays as a live transcript.",
+    "productDemo": "Product demo",
+    "transcript": "Transcript",
+    "progress": "Call progress"
+  },
+  "pilot": {
+    "eyebrow": "Founding pilot",
+    "title": "We're onboarding our first clinics.",
+    "intro": "Join as a founding clinic and shape what Clarus becomes.",
+    "benefits": {
+      "free": "Free pilot",
+      "setup": "Setup done for you",
+      "founders": "A direct line to the founders"
+    },
+    "fields": {
+      "name": "Your name",
+      "clinic": "Clinic name",
+      "role": "Your role",
+      "country": "Country",
+      "city": "City",
+      "doctors": "Number of doctors",
+      "phone": "WhatsApp or phone",
+      "email": "Email",
+      "automate": "What do you want to automate first?"
+    },
+    "choose": "Choose…",
+    "roles": {
+      "owner": "Owner",
+      "doctor": "Doctor",
+      "manager": "Practice manager",
+      "front-desk": "Front desk",
+      "other": "Other"
+    },
+    "countries": {
+      "BD": "Bangladesh",
+      "AE": "UAE",
+      "QA": "Qatar",
+      "CA": "Canada",
+      "other": "Other"
+    },
+    "doctors": {
+      "1": "1",
+      "2-5": "2–5",
+      "6-20": "6–20",
+      "20+": "More than 20"
+    },
+    "automate": {
+      "missed": "Missed-appointment recovery",
+      "lab": "Lab result follow-ups",
+      "recalls": "Recalls and check-ups",
+      "reminders": "Appointment reminders",
+      "slots": "Filling cancelled slots",
+      "other": "Something else"
+    },
+    "submit": "Join the founding pilot",
+    "submitting": "Sending…",
+    "privacy": "We only use this to contact you about the pilot. See our privacy policy.",
+    "success": {
+      "title": "Thanks. You're on the list.",
+      "body": "A founder will WhatsApp you within 2 working days."
+    },
+    "errors": {
+      "name": "Please enter your name.",
+      "clinic": "Please enter your clinic's name.",
+      "role": "Choose your role.",
+      "country": "Choose your country.",
+      "city": "Please enter your city.",
+      "doctors": "Choose how many doctors you have.",
+      "phone": "Enter a WhatsApp or phone number, with country code.",
+      "email": "Enter a valid email address.",
+      "automate": "Pick at least one.",
+      "captcha": "Please complete the check above and try again.",
+      "unavailable": "Sign-ups aren't connected yet. Please email us at {email}.",
+      "failed": "Something went wrong. Please try again, or email us at {email}."
+    }
+  },
+  "footer": {
+    "tagline": "AI-assisted patient follow-up that fills clinic calendars and recovers lost revenue.",
+    "product": "Product",
+    "company": "Company",
+    "markets": "Markets",
+    "legal": "Legal",
+    "contact": "Contact",
+    "careers": "Careers",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "pilot": "Pilot"
+  }
+}
