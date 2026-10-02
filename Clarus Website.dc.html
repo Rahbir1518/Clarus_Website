@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#f6f5f1;color:#1d1519}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+::selection{background:#1d1519;color:#fff}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes wave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes flow{0%{left:-35%}100%{left:100%}}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,-50px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.08)}50%{transform:translate(-80px,40px) scale(.95)}}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes morph{0%,100%{border-radius:58% 42% 47% 53%/48% 56% 44% 52%}33%{border-radius:44% 56% 60% 40%/57% 43% 57% 43%}66%{border-radius:52% 48% 38% 62%/42% 60% 40% 58%}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes gate{0%,100%{background:rgba(255,255,255,0.22);scale:1}8%{background:#ff7a6e;scale:1.3}22%{background:#f6f5f1;scale:1}}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="--hp:0;position:relative;font-family:'Geist',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#1d1519;background:#f6f5f1;overflow-x:clip">
+
+  <div style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden">
+    <div style="position:absolute;width:52vw;height:52vw;left:-14vw;top:14vh;border-radius:50%;background:radial-gradient(circle,rgba(29,21,25,0.13),transparent 65%);animation:drift 26s ease-in-out infinite"></div>
+    <div style="position:absolute;width:46vw;height:46vw;right:-12vw;top:46vh;border-radius:50%;background:radial-gradient(circle,rgba(29,21,25,0.10),transparent 65%);animation:drift2 30s ease-in-out infinite"></div>
+    <div style="position:absolute;width:26vw;height:26vw;right:18vw;top:8vh;border-radius:50%;background:radial-gradient(circle,rgba(29,21,25,0.06),transparent 65%);animation:drift 34s ease-in-out infinite reverse"></div>
+  </div>
+
+  <header style="position:sticky;top:0;z-index:50;padding:14px clamp(16px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:16px">
+    <a href="#top" data-liquid="1" style="display:flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;border-radius:999px;background:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.9);backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%)">
+      <span style="position:relative;width:24px;height:24px;border-radius:7px;background:#c23b3b;display:block"><span style="position:absolute;left:10px;top:5px;width:4px;height:14px;background:#fff;border-radius:1px"></span><span style="position:absolute;left:5px;top:10px;width:14px;height:4px;background:#fff;border-radius:1px"></span></span>
+      <span style="font-family:'Instrument Serif',serif;font-size:27px;line-height:1">Clarus</span>
+    </a>
+    <nav data-liquid="1" style="display:flex;gap:2px;padding:5px;border-radius:999px;background:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.9);backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%);font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;flex-wrap:wrap;justify-content:center">
+      <a href="#how" style="padding:8px 14px;border-radius:999px;transition:background .25s,color .25s" style-hover="background:#1d1519;color:#fff">HOW IT WORKS</a>
+      <a href="#languages" style="padding:8px 14px;border-radius:999px;transition:background .25s,color .25s" style-hover="background:#1d1519;color:#fff">LANGUAGES</a>
+      <a href="#team" style="padding:8px 14px;border-radius:999px;transition:background .25s,color .25s" style-hover="background:#1d1519;color:#fff">TEAM</a>
+      <a href="#pricing" style="padding:8px 14px;border-radius:999px;transition:background .25s,color .25s" style-hover="background:#1d1519;color:#fff">PRICING</a>
+      <a href="#faq" style="padding:8px 14px;border-radius:999px;transition:background .25s,color .25s" style-hover="background:#1d1519;color:#fff">FAQ</a>
+    </nav>
+    <a href="#contact" style="display:block;height:44px;padding:0 22px;border-radius:999px;background:#1d1519;color:#fff;font-family:'Geist',sans-serif;font-weight:500;font-size:14px;overflow:hidden">
+      <span style="display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.7,0,.2,1)" style-hover="transform:translateY(-44px)"><span style="height:44px;line-height:44px">Book a pilot</span><span style="height:44px;line-height:44px">Book a pilot →</span></span>
+    </a>
+  </header>
+
+  <main id="top" style="position:relative;z-index:1">
+
+    <section data-screen-label="Hero" style="padding:clamp(30px,6vh,70px) clamp(16px,3vw,40px) 0;text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;border:1.5px solid #1d1519;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.12em;background:#fff;animation:fadeup .9s .05s both">
+        <span style="width:7px;height:7px;border-radius:50%;background:#c23b3b"></span>FOR CLINICS · HOSPITALS · INSURERS
+      </div>
+      <h1 style="transform:translateY(calc(var(--hp) * -30px));opacity:calc(1 - var(--hp) * 0.5);will-change:transform;font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(40px,4.8vw,76px);line-height:.9;margin:28px 0 0">
+        <span style="display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.1em"><span style="display:block;animation:rise 1.1s cubic-bezier(.2,.8,.1,1) .1s both">Every follow-up,</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.1em"><span style="display:block;animation:rise 1.1s cubic-bezier(.2,.8,.1,1) .22s both"><i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;color:#c23b3b;font-size:1em">handled.</i></span></span>
+      </h1>
+      <p style="max-width:560px;margin:26px auto 0;font-size:clamp(17px,1.4vw,20px);line-height:1.45;color:#3d3639;text-wrap:balance;animation:fadeup 1s .5s both">Clarus turns lab results, missed visits and due follow-ups into AI voice calls — in the patient's own language — that book straight into your real free slots.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px;animation:fadeup 1s .65s both">
+        <a href="#contact" style="display:block;height:56px;padding:0 30px;border-radius:999px;background:#1d1519;color:#fff;font-family:'Geist',sans-serif;font-weight:500;font-size:16px;overflow:hidden">
+          <span style="display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.7,0,.2,1)" style-hover="transform:translateY(-56px)"><span style="height:56px;line-height:56px">Book a free pilot</span><span style="height:56px;line-height:56px">Book a free pilot →</span></span>
+        </a>
+        <a href="#call" data-liquid="1" style="display:block;height:56px;padding:0 30px;border-radius:999px;background:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-family:'Geist',sans-serif;font-weight:500;font-size:16px;overflow:hidden">
+          <span style="display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.7,0,.2,1)" style-hover="transform:translateY(-56px)"><span style="height:56px;line-height:56px">Hear a call</span><span style="height:56px;line-height:56px">Hear a call ↓</span></span>
+        </a>
+      </div>
+
+      <div style="position:relative;margin:clamp(40px,8vh,80px) calc(-1 * clamp(16px,3vw,40px)) 0;padding:clamp(50px,8vh,90px) clamp(16px,3vw,40px)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;overflow:hidden;pointer-events:none">
+          
+          <div ref="{{ ecgRef }}" style="position:absolute;left:0;right:0;top:50%;height:clamp(100px,10vw,150px);transform:translateY(-50%);opacity:.5"></div>
+        </div>
+        <div style="position:relative;display:flex;justify-content:center;align-items:center;gap:clamp(14px,2vw,26px);flex-wrap:wrap;text-align:left">
+          <div data-par="-0.03" data-liquid="1" style="width:290px;padding:22px;border-radius:28px;background:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.75);backdrop-filter:blur(10px) saturate(180%);-webkit-backdrop-filter:blur(10px) saturate(180%)">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="width:42px;height:42px;border-radius:50%;background:#1d1519;display:grid;place-items:center;flex:none"><span style="width:10px;height:10px;border-radius:50%;background:#c23b3b"></span></span>
+              <div><div style="font-weight:600">Calling Ayesha R.</div><div style="font-family:'Geist Mono',monospace;font-size:11px;color:#3d3639">+880 · বাংলা · 00:42</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:3px;height:40px;margin-top:18px">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="24">
+                <span style="flex:1;height:100%;border-radius:2px;background:#1d1519;animation:wave 1.1s ease-in-out infinite;animation-delay:{{ b.delay }}"></span>
+              </sc-for>
+            </div>
+          </div>
+          <div data-par="0.025" data-liquid="1" style="width:260px;padding:24px;border-radius:28px;background:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.75);backdrop-filter:blur(10px) saturate(180%);-webkit-backdrop-filter:blur(10px) saturate(180%)">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;color:#3d3639">APPOINTMENT BOOKED</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:60px;line-height:1;margin:10px 0 4px">Thu 10:30</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px"><span style="width:18px;height:18px;border-radius:50%;background:#c23b3b;color:#fff;display:grid;place-items:center;font-size:11px">✓</span>Follow-up · 20 min</div>
+          </div>
+          <div data-par="-0.02" data-liquid="1" style="width:250px;padding:22px;border-radius:28px;background:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.75);backdrop-filter:blur(10px) saturate(180%);-webkit-backdrop-filter:blur(10px) saturate(180%)">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;color:#3d3639">SAFETY CHECKS</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:60px;line-height:1;margin:10px 0 12px">8 / 8</div>
+            <div style="display:flex;gap:4px"><sc-for list="{{ eightDots }}" as="e" hint-placeholder-count="8"><span style="flex:1;height:6px;border-radius:3px;background:#1d1519"></span></sc-for></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Trust" style="padding:clamp(40px,7vh,80px) clamp(16px,3vw,40px) clamp(60px,10vh,100px)">
+      <div data-liquid="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));border-radius:28px;background:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden">
+        <sc-for list="{{ trust }}" as="tr" hint-placeholder-count="4">
+          <div data-reveal="{{ tr.delay }}" style="padding:24px 26px;display:flex;flex-direction:column;gap:8px;border-left:1px solid rgba(29,21,25,0.08)">
+            <span style="display:flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;color:#6b6468"><span style="width:6px;height:6px;border-radius:50%;background:#1d1519"></span>{{ tr.k }}</span>
+            <span style="font-family:'Instrument Serif',serif;font-size:26px;line-height:1.1">{{ tr.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section ref="{{ inkRef }}" data-screen-label="Problem" style="position:relative;background:#1d1519;color:#f6f5f1;padding:clamp(90px,14vh,150px) clamp(16px,3vw,40px);overflow:hidden;border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0">
+      
+      
+      <div style="position:relative;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:30px;opacity:.7">(01) THE PROBLEM</div>
+      <h2 style="position:relative;font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.02em;font-size:clamp(34px,3.8vw,56px);line-height:1.08;margin:0;max-width:820px;text-wrap:balance">Clinics lose <i style="color:#ff7a6e">nearly a quarter</i> of their booked visits — and staff lose hours chasing patients by phone.</h2>
+      <div ref="{{ gridRef }}" style="position:relative;margin-top:clamp(50px,8vh,80px);display:flex;flex-wrap:wrap;gap:30px;align-items:flex-end">
+        <div style="flex:0 1 560px;display:grid;grid-template-columns:repeat(25,minmax(0,1fr));gap:4px">
+          <sc-for list="{{ cells }}" as="c" hint-placeholder-count="100">
+            <span style="aspect-ratio:1;border-radius:3px;background:{{ c.bg }};box-shadow:{{ c.ring }};transform:scale({{ c.s }});transition:background .5s, box-shadow .5s, transform .6s cubic-bezier(.3,1.5,.5,1);transition-delay:{{ c.delay }}"></span>
+          </sc-for>
+        </div>
+        <p style="flex:0 1 280px;margin:0;font-size:16px;line-height:1.45;opacity:.8">Of every 100 booked visits, about <span style="color:#ff7a6e">23</span> never happen.</p>
+      </div>
+      <div ref="{{ statsRef }}" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin-top:clamp(60px,10vh,100px)">
+        <div data-reveal="0" data-liquid="dark" style="padding:28px;border-radius:28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)">
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(46px,3.8vw,60px);line-height:.9">{{ n1 }}%</div>
+          <p style="margin:12px 0 0;opacity:.75">of booked appointments are missed worldwide. Canadian clinics report 10–25%.</p>
+        </div>
+        <div data-reveal="120" data-liquid="dark" style="padding:28px;border-radius:28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)">
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(46px,3.8vw,60px);line-height:.9">${{ n2 }}</div>
+          <p style="margin:12px 0 0;opacity:.75">average cost of one no-show, from a large hospital study.</p>
+        </div>
+        <div data-reveal="240" data-liquid="dark" style="padding:28px;border-radius:28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)">
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(46px,3.8vw,60px);line-height:.9;color:#ff7a6e">${{ n3 }}K</div>
+          <p style="margin:12px 0 0;opacity:.75">lost a year by a clinic missing just eight visits a week.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" data-screen-label="How it works" style="position:relative;background:#f6f5f1;padding:clamp(90px,14vh,150px) clamp(16px,3vw,40px) 100px">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px"><span style="color:#c23b3b">(02)</span> HOW IT WORKS</div>
+      <h2 data-reveal="0" style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3.6vw,56px);line-height:.92;margin:0 0 44px;max-width:1200px">From clinical event <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">to booked visit.</i></h2>
+      <div ref="{{ stackRef }}" style="position:relative;display:flex;flex-direction:column">
+        <div style="position:absolute;inset:0;pointer-events:none">
+          <div style="position:sticky;top:20vh;height:60vh;overflow:hidden">
+            <div style="position:absolute;width:38vw;height:38vw;left:8%;top:0;border-radius:50%;background:radial-gradient(circle,rgba(29,21,25,0.22),transparent 62%);animation:drift 20s ease-in-out infinite"></div>
+            <div style="position:absolute;width:30vw;height:30vw;right:6%;top:20%;border-radius:50%;background:radial-gradient(circle,rgba(29,21,25,0.16),transparent 62%);animation:drift2 24s ease-in-out infinite"></div>
+          </div>
+        </div>
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+          <div data-card="1" data-liquid="card" style="position:sticky;top:{{ st.top }};margin-bottom:{{ st.mb }};min-height:min(46vh,380px);height:{{ cardH }};overflow:hidden;padding:clamp(24px,3.4vw,50px);border-radius:34px;background:{{ st.bg }};color:{{ st.fg }};border:1px solid {{ st.border }};backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;transform-origin:center top;will-change:transform">
+            <div style="display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+              <div style="display:flex;align-items:center;gap:14px">
+                <span style="font-family:'Instrument Serif',serif;font-size:clamp(36px,3vw,48px);line-height:.8">0{{ st.n }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;padding:6px 12px;border-radius:999px;border:1px solid currentColor;opacity:.75">{{ st.code }}</span>
+              </div>
+              <div>
+                <h3 style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(28px,2.6vw,40px);line-height:.95;margin:0 0 16px">{{ st.title }}</h3>
+                <p style="margin:0;max-width:460px;font-size:17px;opacity:.78;text-wrap:pretty">{{ st.body }}</p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end">
+              <sc-for list="{{ st.chips }}" as="c" hint-placeholder-count="4">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-top:1px solid {{ st.rule }};font-size:16px"><span>{{ c.a }}</span><span style="font-family:'Geist Mono',monospace;font-size:11px;opacity:.55">{{ c.b }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section ref="{{ callRef }}" id="call" data-screen-label="The call" style="position:relative;height:{{ callH }}">
+      <div style="position:{{ stickyPos }};top:64px;min-height:calc(100vh - 64px);display:flex;flex-direction:column;justify-content:center;padding:clamp(12px,2.4vh,30px) clamp(16px,3vw,40px);overflow:hidden">
+        
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(14px,2.6vh,28px)">
+          <div>
+            <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:14px"><span style="color:#c23b3b">(03)</span> THE CALL</div>
+            <h2 style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(29px,min(3.2vw,4.8vh),55px);line-height:.92;margin:0;max-width:840px">Only offers times <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">that are actually free.</i></h2>
+          </div>
+          <p style="margin:0;max-width:340px;color:#3d3639;font-size:15px">During the call, the agent reads your hours and bookings live and explains when a time won't work. Keep scrolling to listen in.</p>
+        </div>
+        <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px">
+          <div data-liquid="1" style="padding:20px;border-radius:30px;background:rgba(255,255,255,0.38);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(14px) saturate(180%);-webkit-backdrop-filter:blur(14px) saturate(180%);display:flex;flex-direction:column;gap:clamp(4px,0.8vh,9px)">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid rgba(29,21,25,0.08)">
+              <div style="display:flex;align-items:center;gap:9px;font-size:14px"><span style="width:8px;height:8px;border-radius:50%;background:{{ statusDot }};transition:background .4s"></span>{{ callStatus }}</div>
+              <div style="display:flex;align-items:center;gap:2px;height:18px;width:100px;opacity:{{ waveOp }};transition:opacity .4s">
+                <sc-for list="{{ bars20 }}" as="b" hint-placeholder-count="20">
+                  <span style="flex:1;height:100%;border-radius:2px;background:#1d1519;animation:wave 1s ease-in-out infinite;animation-delay:{{ b.delay }}"></span>
+                </sc-for>
+              </div>
+            </div>
+            <sc-for list="{{ lines }}" as="l" hint-placeholder-count="7">
+              <div style="display:flex;justify-content:{{ l.justify }};opacity:{{ l.op }};transform:{{ l.tf }};transition:opacity .5s, transform .6s cubic-bezier(.2,.7,.2,1)">
+                <div style="max-width:86%;padding:clamp(5px,0.8vh,9px) 14px;border-radius:16px;background:{{ l.bg }};color:{{ l.fg }};font-size:clamp(12.5px,1.6vh,14px);line-height:1.35">
+                  <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;opacity:.55;margin-bottom:2px">{{ l.who }}</div>{{ l.text }}
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div data-liquid="1" style="padding:20px;border-radius:30px;background:rgba(255,255,255,0.38);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(14px) saturate(180%);-webkit-backdrop-filter:blur(14px) saturate(180%);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:1px solid rgba(29,21,25,0.08)">
+              <span style="font-size:14px">Appointments</span>
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#6b6468">THIS WEEK</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;flex:1">
+              <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="font-size:12px;text-align:center;color:{{ d.labelColor }}">{{ d.label }}</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;padding:5px;border-radius:12px;min-height:clamp(150px,26vh,250px);flex:1;background:{{ d.bg }};box-shadow:{{ d.ring }};transition:box-shadow .4s">
+                    <sc-for list="{{ d.slots }}" as="s" hint-placeholder-count="6">
+                      <div style="height:clamp(20px,3.4vh,32px);border-radius:7px;font-size:10.5px;padding:3px 6px;line-height:1.2;overflow:hidden;background:{{ s.bg }};color:{{ s.fg }};border:{{ s.border }};transform:{{ s.tf }};transition:all .55s cubic-bezier(.3,1.4,.5,1)">{{ s.label }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;padding:6px 11px;border-radius:999px;border:1px solid rgba(29,21,25,0.14);background:{{ tool1 }};color:{{ tool1fg }};transition:all .4s">clarus_available_slots</span>
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;padding:6px 11px;border-radius:999px;border:1px solid rgba(29,21,25,0.14);background:{{ tool2 }};color:{{ tool2fg }};transition:all .4s">clarus_check_slot</span>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;height:3px;margin-top:clamp(10px,2vh,20px);background:rgba(29,21,25,0.1);border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ callFill }};background:#1d1519;transition:width .4s"></div></div>
+      </div>
+    </section>
+
+    <section id="languages" data-screen-label="Languages" style="padding:clamp(90px,14vh,150px) clamp(16px,3vw,40px) 60px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:50px">
+        <div>
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px"><span style="color:#c23b3b">(04)</span> LANGUAGES</div>
+          <h2 data-reveal="0" style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3.6vw,56px);line-height:.92;margin:0">The number <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">picks the voice.</i></h2>
+        </div>
+        <p data-reveal="120" style="margin:0;max-width:360px;color:#3d3639">Clarus reads the country code of the number it dials and switches language and voice to match. No settings per patient.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+        <sc-for list="{{ langCards }}" as="lc" hint-placeholder-count="3">
+          <div data-reveal="{{ lc.delay }}" data-liquid="{{ lc.liq }}" style="position:relative;overflow:hidden;min-height:400px;padding:30px;border-radius:32px;background:{{ lc.bg }};color:{{ lc.fg }};border:1px solid {{ lc.border }};backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%);display:flex;flex-direction:column;justify-content:space-between;transition:transform .6s cubic-bezier(.2,.8,.2,1)" style-hover="transform:translateY(-3px)">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1">{{ lc.code }}</span>
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;opacity:.65">{{ lc.where }}</span>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:3px;height:28px;margin-bottom:18px;max-width:180px"><sc-for list="{{ lc.bars }}" as="b" hint-placeholder-count="18"><span style="flex:1;height:100%;border-radius:2px;background:currentColor;opacity:.75;animation:wave 1.2s ease-in-out infinite;animation-delay:{{ b.delay }}"></span></sc-for></div>
+              <div style="font-size:clamp(45px,3.6vw,58px);line-height:1.05;font-family:{{ lc.font }};margin-bottom:14px;direction:{{ lc.dir }}">{{ lc.native }}</div>
+              <div style="font-size:15px;opacity:.75;direction:{{ lc.dir }}">“{{ lc.line }}”</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="portal" data-screen-label="Patient portal" style="padding:0 clamp(16px,3vw,40px) clamp(90px,14vh,150px)">
+      <div data-reveal="0" style="position:relative;overflow:hidden;border-radius:40px;background:#1d1519;color:#f6f5f1;padding:clamp(30px,5vw,70px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(30px,5vw,70px);align-items:center">
+        <div style="position:absolute;width:50%;height:120%;right:-10%;top:-10%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.14),transparent 65%);pointer-events:none"></div>
+        <div style="position:relative">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em"><span style="opacity:.7">(05) PATIENT ACCESS</span><span style="padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.3)">COMING TO CLARUS</span></div>
+          <h2 style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(30px,3vw,46px);line-height:.95;margin:0 0 22px">Patients get <i style="font-family:'Instrument Serif',serif;font-weight:400;color:#ff7a6e">their own view.</i></h2>
+          <p style="margin:0 0 30px;max-width:460px;font-size:17px;opacity:.78">Clarus is adding a patient login. Patients will see their upcoming appointments, medications and follow-ups — drawn from the same record your clinic already works from. Fewer "when is my next visit?" calls to the front desk.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:14px">Schedule</span>
+            <span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:14px">Medications</span>
+            <span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:14px">Follow-ups</span>
+            <span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:14px">In their language</span>
+          </div>
+        </div>
+        <div data-liquid="dark" style="position:relative;max-width:440px;width:100%;justify-self:center;padding:22px;border-radius:32px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.1)">
+            <div><div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;opacity:.55">GOOD MORNING</div><div style="font-family:'Instrument Serif',serif;font-size:28px;line-height:1.1">Ayesha</div></div>
+            <span style="width:40px;height:40px;border-radius:50%;background:#f6f5f1;color:#1d1519;display:grid;place-items:center;font-weight:600;font-size:14px">AR</span>
+          </div>
+          <div style="padding:16px;border-radius:20px;background:#f6f5f1;color:#1d1519">
+            <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;color:#6b6468">NEXT APPOINTMENT</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:34px;line-height:1.05;margin:6px 0 2px">Thu, 10:30</div>
+            <div style="font-size:14px;color:#3d3639">Follow-up · Dr. Karim · Lakeside Clinic</div>
+          </div>
+          <div style="padding:16px;border-radius:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;gap:10px">
+            <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;opacity:.55">MEDICATIONS TODAY</div>
+            <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><span>Metformin 500 mg</span><span style="opacity:.6">8:00 · 20:00</span></div>
+            <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><span>Atorvastatin 10 mg</span><span style="opacity:.6">21:00</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-radius:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);font-size:14px">
+            <span>HbA1c lab test due</span><span style="font-family:'Geist Mono',monospace;font-size:11px;padding:4px 9px;border-radius:999px;background:#ff7a6e;color:#1d1519">IN 3 WEEKS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Platform" style="padding:60px clamp(16px,3vw,40px) clamp(90px,14vh,150px)">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px"><span style="color:#c23b3b">(06)</span> THE PLATFORM</div>
+      <h2 data-reveal="0" style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3.6vw,56px);line-height:.92;margin:0 0 50px">Draw it once. <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">Runs for everyone.</i></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+        <div data-reveal="0" data-liquid="1" style="grid-column:1 / -1;padding:clamp(24px,3vw,40px);border-radius:32px;background:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%)">
+          <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px">
+            <h3 style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3vw,46px);line-height:1;margin:0">Visual workflow builder</h3>
+            <p style="margin:0;max-width:430px;color:#3d3639">Drag triggers, conditions and actions onto a canvas. No code. The patient record decides who is contacted, and why.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px">
+            <sc-for list="{{ nodes }}" as="nd" hint-placeholder-count="4">
+              <div style="padding:14px 16px;border-radius:16px;background:{{ nd.bg }};border:1px solid {{ nd.border }};color:{{ nd.fg }}">
+                <div style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;opacity:.6">{{ nd.kind }}</div>
+                <div style="font-weight:600;margin-top:6px">{{ nd.title }}</div>
+                <div style="position:relative;height:2px;margin-top:12px;border-radius:2px;overflow:hidden;background:{{ nd.track }}">
+                  <span style="position:absolute;top:0;width:35%;height:100%;background:{{ nd.dot }};animation:flow 2.4s linear infinite;animation-delay:{{ nd.delay }}"></span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <sc-for list="{{ features }}" as="f" hint-placeholder-count="6">
+          <div data-reveal="{{ f.delay }}" data-liquid="{{ f.liq }}" style="padding:28px;border-radius:30px;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.border }};backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%);min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;opacity:.55">{{ f.tag }}</span>
+            <div>
+              <h3 style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:32px;line-height:1;margin:0 0 10px">{{ f.title }}</h3>
+              <p style="margin:0;opacity:.75;font-size:15px;text-wrap:pretty">{{ f.body }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="safety" data-screen-label="Safety" style="padding:0 clamp(16px,3vw,40px) clamp(90px,14vh,150px)">
+      <div data-reveal="0" data-liquid="dark" style="position:relative;overflow:hidden;padding:clamp(30px,5vw,70px);border-radius:40px;background:#1d1519;color:#f6f5f1">
+        
+        <div style="position:relative;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px;opacity:.7">(07) SAFETY</div>
+        <h2 style="position:relative;font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(30px,3vw,46px);line-height:.92;margin:0 0 44px;max-width:900px">Eight checks before every call. <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em;color:#ff7a6e">All fail closed.</i></h2>
+        <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px">
+          <sc-for list="{{ gates }}" as="g" hint-placeholder-count="8">
+            <div style="padding:20px;border-radius:22px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)">
+              <div style="font-family:'Geist Mono',monospace;font-size:11px;opacity:.55;margin-bottom:10px">0{{ g.n }}</div>
+              <div style="font-weight:600;font-size:17px">{{ g.title }}</div>
+              <div style="font-size:14px;opacity:.65;margin-top:4px">{{ g.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" data-screen-label="Team" style="padding:0 clamp(16px,3vw,40px) clamp(90px,14vh,150px)">
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px"><span style="color:#c23b3b">(08)</span> THE TEAM</div>
+      <h2 data-reveal="0" style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3.6vw,56px);line-height:.92;margin:0 0 50px">The people <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">behind the calls.</i></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+        <sc-for list="{{ team }}" as="m" hint-placeholder-count="3">
+          <div data-reveal="{{ m.delay }}" style="position:relative;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:#e4e2dc">
+            <img data-par-img="1" src="{{ m.img }}" alt="{{ m.name }}" style="position:absolute;left:0;top:-8%;width:100%;height:116%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .6s ease" style-hover="filter:grayscale(0) contrast(1)">
+            <div data-liquid="1" style="pointer-events:none;position:absolute;left:12px;right:12px;bottom:12px;padding:18px 20px;border-radius:24px;background:rgba(255,255,255,0.32);border:1px solid rgba(255,255,255,0.7);backdrop-filter:blur(14px) saturate(180%);-webkit-backdrop-filter:blur(14px) saturate(180%)">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+                <span style="font-family:'Instrument Serif',serif;font-size:26px;line-height:1.05">{{ m.name }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;padding:4px 9px;border-radius:999px;background:#1d1519;color:#fff">{{ m.role }}</span>
+              </div>
+              <div style="font-size:14px;margin-top:6px;color:#1d1519">{{ m.bio }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="pricing" data-screen-label="Pricing" style="padding:0 clamp(16px,3vw,40px) clamp(90px,14vh,150px)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:44px">
+        <div>
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px"><span style="color:#c23b3b">(09)</span> PRICING</div>
+          <h2 data-reveal="0" style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3.6vw,56px);line-height:.92;margin:0;max-width:1000px">Paid back by <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">4–6 recovered visits.</i></h2>
+        </div>
+        <div data-liquid="1" style="display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-wrap:wrap">
+          <sc-for list="{{ regions }}" as="r" hint-placeholder-count="4">
+            <button onClick="{{ r.pick }}" style="border:0;cursor:pointer;padding:10px 18px;border-radius:999px;font:500 14px 'Geist',sans-serif;background:{{ r.bg }};color:{{ r.fg }};transition:background .35s,color .35s">{{ r.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;align-items:stretch">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+          <div data-reveal="{{ p.delay }}" data-liquid="{{ p.liq }}" style="padding:32px;border-radius:32px;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.border }};backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%);display:flex;flex-direction:column;gap:24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+              <span style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">{{ p.name }}</span>
+              <sc-if value="{{ p.popular }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;padding:5px 10px;border-radius:999px;background:#c23b3b;color:#fff">MOST POPULAR</span>
+              </sc-if>
+            </div>
+            <div>
+              <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-family:'Instrument Serif',serif;font-size:clamp(42px,3.2vw,52px);line-height:.9">{{ p.price }}</span><span style="opacity:.6">/ month</span></div>
+              <div style="font-size:14px;opacity:.65;margin-top:12px">{{ p.blurb }}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;flex:1">
+              <sc-for list="{{ p.items }}" as="it" hint-placeholder-count="4">
+                <div style="display:flex;gap:10px;font-size:15px;padding:11px 0;border-top:1px solid {{ p.rule }}"><span style="opacity:.5">+</span>{{ it }}</div>
+              </sc-for>
+            </div>
+            <a href="#contact" style="display:block;height:52px;border-radius:999px;background:{{ p.ctaBg }};color:{{ p.ctaFg }};font-family:'Geist',sans-serif;font-weight:500;font-size:15px;overflow:hidden;text-align:center">
+              <span style="display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.7,0,.2,1)" style-hover="transform:translateY(-52px)"><span style="height:52px;line-height:52px">Start with {{ p.name }}</span><span style="height:52px;line-height:52px">Start with {{ p.name }} →</span></span>
+            </a>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:14px;color:#6b6468">
+        <span>{{ setupNote }}</span>
+        <span>AI voice minutes above each plan's allowance are billed per minute. Hospital groups get a custom quote.</span>
+      </div>
+    </section>
+
+    <section id="faq" data-screen-label="FAQ" style="padding:0 clamp(16px,3vw,40px) clamp(60px,10vh,100px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(30px,5vw,80px);align-items:start">
+        <div>
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:24px"><span style="color:#c23b3b">(10)</span> FAQ</div>
+          <h2 data-reveal="0" style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(32px,3.2vw,50px);line-height:.92;margin:0">Good <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">questions.</i></h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+            <div data-liquid="1" style="border-radius:24px;background:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden">
+              <button onClick="{{ q.toggle }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;border:0;background:transparent;cursor:pointer;text-align:left;font:600 17px 'Geist',sans-serif;color:#1d1519">
+                {{ q.q }}<span style="flex:none;width:30px;height:30px;border-radius:50%;background:#1d1519;color:#fff;display:grid;place-items:center;font-size:18px;transform:rotate({{ q.rot }});transition:transform .4s cubic-bezier(.2,.8,.2,1)">+</span>
+              </button>
+              <div style="display:grid;grid-template-rows:{{ q.rows }};transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)">
+                <div style="overflow:hidden"><p style="margin:0;padding:0 22px 22px;color:#3d3639;max-width:600px">{{ q.a }}</p></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section ref="{{ ctaSecRef }}" id="contact" data-screen-label="CTA" style="--sp:0;--sp2:0;--ds:1;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px clamp(16px,3vw,40px);text-align:center">
+      <div style="position:absolute;left:50%;top:50%;width:min(1180px,90vw,130vh);aspect-ratio:1.7;transform:translate(-50%,-50%) scale(var(--sp));pointer-events:none">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 34% 30%,#d6524b,#c23b3b 55%,#a92f30);animation:morph 10s ease-in-out infinite"></div>
+      </div>
+      <sc-for list="{{ drops }}" as="d" hint-placeholder-count="12">
+        <span style="position:absolute;left:50%;top:50%;width:{{ d.s }}px;height:{{ d.s }}px;margin:{{ d.m }};border-radius:50%;background:#c23b3b;pointer-events:none;animation:bob {{ d.dur }} ease-in-out infinite;transform:translate(calc({{ d.x }}px * var(--sp2) * var(--ds)), calc({{ d.y }}px * var(--sp2) * var(--ds))) scale(var(--sp2))"></span>
+      </sc-for>
+      <div ref="{{ ctaRef }}" style="position:relative;color:#1d1519;transition:color .5s;max-width:min(980px,78vw)">
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;margin-bottom:26px">(FREE PILOTS · Q4 2026)</div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-0.025em;font-size:clamp(34px,4vw,62px);line-height:.92;margin:0;text-wrap:balance">Give your front desk <i style="font-family:'Instrument Serif',serif;text-transform:none;font-weight:400;font-size:1em">its afternoons back.</i></h2>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:40px">
+          <a href="mailto:" style="display:block;height:58px;padding:0 32px;border-radius:999px;background:#1d1519;color:#fff;font-family:'Geist',sans-serif;font-weight:500;font-size:16px;overflow:hidden">
+            <span style="display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.7,0,.2,1)" style-hover="transform:translateY(-58px)"><span style="height:58px;line-height:58px">Book a free pilot</span><span style="height:58px;line-height:58px">Book a free pilot →</span></span>
+          </a>
+          <a href="mailto:" data-liquid="1" style="display:block;height:58px;padding:0 32px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-family:'Geist',sans-serif;font-weight:500;font-size:16px;line-height:58px">Talk to the founders</a>
+        </div>
+      </div>
+    </section>
+
+    <footer data-screen-label="Footer" style="padding:0 clamp(16px,3vw,40px) clamp(16px,3vw,40px)">
+      <div data-liquid="1" style="border-radius:36px;padding:clamp(28px,4vw,56px);background:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.95);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:36px">
+          <div style="display:flex;flex-direction:column;gap:14px;max-width:300px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="position:relative;width:28px;height:28px;border-radius:8px;background:#c23b3b;display:block"><span style="position:absolute;left:12px;top:6px;width:4px;height:16px;background:#fff;border-radius:1px"></span><span style="position:absolute;left:6px;top:12px;width:16px;height:4px;background:#fff;border-radius:1px"></span></span>
+              <span style="font-family:'Instrument Serif',serif;font-size:32px;line-height:1">Clarus</span>
+            </div>
+            <p style="margin:0;color:#3d3639;font-size:15px">AI follow-up calls that fill clinic calendars, in the patient's own language.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:15px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;color:#6b6468">PRODUCT</span><a href="#how">How it works</a><a href="#call">The call</a><a href="#languages">Languages</a><a href="#safety">Safety</a></div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:15px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;color:#6b6468">COMPANY</span><a href="#team">Team</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:15px"><span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;color:#6b6468">MARKETS</span><span>Bangladesh</span><span>UAE · Qatar</span><span>Canada</span></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:20px;border-top:1px solid rgba(29,21,25,0.1);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;color:#6b6468">
+          <span>© 2026 CLARUS</span><a href="#top">BACK TO TOP ↑</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;defaultRegion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Bangladesh&quot;,&quot;UAE&quot;,&quot;Qatar&quot;,&quot;Canada&quot;],&quot;default&quot;:&quot;Canada&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Pricing&quot;}}">
+class Component extends DCLogic {
+  state = { cs: 0, n1: 0, n2: 0, n3: 0, region: null, narrow: false, faq: 0, grid: 0 };
+  gridRef = React.createRef(); ecgRef = React.createRef();
+  rootRef = React.createRef(); inkRef = React.createRef(); statsRef = React.createRef(); stackRef = React.createRef();
+  callRef = React.createRef(); ctaRef = React.createRef(); ctaSecRef = React.createRef();
+  drops = Array.from({ length: 12 }, (_, i) => { const a = i / 12 * Math.PI * 2 + 0.4, d = 470 + ((i * 37) % 10) * 22, s = 10 + (i * 13) % 24; return { x: Math.round(Math.cos(a) * d * 1.15), y: Math.round(Math.sin(a) * d * 0.62), s, m: '-' + s / 2 + 'px 0 0 -' + s / 2 + 'px', dur: (2.4 + (i % 4) * 0.5) + 's' }; });
+
+  componentDidMount() {
+    this.motion = this.props.motion ?? true;
+    const root = this.rootRef.current;
+    if (!document.getElementById('clarus-lg')) document.body.insertAdjacentHTML('beforeend', '<svg id="clarus-lg" width="0" height="0" style="position:absolute"><defs><filter id="lg" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="4" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="nb"/><feDisplacementMap in="SourceGraphic" in2="nb" scale="46" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>');
+    const chrome = /Chrome\//.test(navigator.userAgent);
+    const RIM = 'inset 0 1px 1px rgba(255,255,255,1), inset 0 -1px 1px rgba(255,255,255,0.6), inset 1px 0 1px rgba(255,255,255,0.75), inset -1px 0 1px rgba(255,255,255,0.75), inset 0 0 30px rgba(255,255,255,0.5), 0 2px 4px rgba(29,21,25,0.06), 0 30px 60px -30px rgba(29,21,25,0.35)';
+    const DARK = 'inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -1px 1px rgba(255,255,255,0.12), inset 0 0 30px rgba(255,255,255,0.05), 0 40px 80px -40px rgba(0,0,0,0.6)';
+    root.querySelectorAll('[data-liquid]').forEach(el => {
+      const dark = el.getAttribute('data-liquid') === 'dark';
+      const card = el.getAttribute('data-liquid') === 'card';
+      if (card) el.style.backdropFilter = el.style.webkitBackdropFilter = (chrome ? 'url(#lg) ' : '') + 'blur(30px) saturate(190%) brightness(1.04)';
+      else if (chrome && el.getAttribute('data-liquid') !== '0') el.style.backdropFilter = 'url(#lg) blur(' + (dark ? 8 : 4) + 'px) saturate(190%) brightness(' + (dark ? 1.1 : 1.05) + ')';
+      if (el.getAttribute('data-liquid') !== '0') el.style.boxShadow = dark ? DARK : RIM;
+    });
+    this.buildEcg();
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = null; this.tick(); }); };
+    this.onResize = () => { this.setState({ narrow: window.innerWidth < 900 || window.innerHeight < 640 }, this.onScroll); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    this.loop = t => { this.frame(t || 0); this.anim = requestAnimationFrame(this.loop); };
+    this.anim = requestAnimationFrame(this.loop);
+    const els = root.querySelectorAll('[data-reveal]');
+    if (!this.motion) { this.setState({ n1: 23, n2: 196, n3: 57, grid: 2 }); return; }
+    els.forEach(el => {
+      const isH = el.tagName === 'H2';
+      el.style.opacity = '0'; el.style.transform = isH ? 'translateY(28px)' : 'translateY(22px)';
+      if (isH) el.style.clipPath = 'inset(0 0 100% 0)';
+      el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.2,1), transform 1.3s cubic-bezier(.16,1,.3,1), clip-path 1.3s cubic-bezier(.16,1,.3,1)';
+      el.style.transitionDelay = (el.getAttribute('data-reveal') || 0) + 'ms';
+    });
+    this.io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.style.opacity = '1'; el.style.transform = 'none'; if (el.tagName === 'H2') el.style.clipPath = 'inset(-20% -5% -20% -5%)';
+      setTimeout(() => { el.style.transition = ''; el.style.transitionDelay = ''; el.style.transform = ''; }, 1500 + +(el.getAttribute('data-reveal') || 0));
+      this.io.unobserve(el);
+    }), { threshold: 0.12 });
+    els.forEach(el => this.io.observe(el));
+    this.io2 = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting && !this.counted) { this.counted = true; this.countUp(); } }), { threshold: 0.3 });
+    this.io2.observe(this.statsRef.current);
+    this.io3 = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting || this.state.grid) return;
+      this.setState({ grid: 1 }); setTimeout(() => this.setState({ grid: 2 }), 1700); this.io3.disconnect();
+    }), { threshold: 0.35 });
+    this.io3.observe(this.gridRef.current);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll); document.removeEventListener('scroll', this.onScroll, true);
+    window.removeEventListener('resize', this.onResize); cancelAnimationFrame(this.anim);
+    this.io && this.io.disconnect(); this.io2 && this.io2.disconnect(); this.io3 && this.io3.disconnect();
+  }
+  buildEcg() {
+    const host = this.ecgRef.current; if (!host) return;
+    const W = 1600, H = 200, m = 120; let d = 'M0,' + m;
+    for (let x = 0; x < W; x += 200) d += ' L' + (x + 40) + ',' + m + ' Q' + (x + 52) + ',' + (m - 14) + ' ' + (x + 64) + ',' + m + ' L' + (x + 80) + ',' + m + ' L' + (x + 88) + ',' + (m + 16) + ' L' + (x + 100) + ',' + (m - 95) + ' L' + (x + 112) + ',' + (m + 40) + ' L' + (x + 122) + ',' + m + ' L' + (x + 140) + ',' + m + ' Q' + (x + 158) + ',' + (m - 26) + ' ' + (x + 176) + ',' + m + ' L' + (x + 200) + ',' + m;
+    host.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" width="100%" height="100%" style="display:block;overflow:visible"><path d="' + d + '" fill="none" stroke="rgba(29,21,25,0.13)" stroke-width="2" vector-effect="non-scaling-stroke"/><path class="c" d="' + d + '" fill="none" stroke="#1d1519" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>';
+    const p = host.querySelector('.c'), L = p.getTotalLength();
+    if (this.motion) { p.style.strokeDasharray = (L * 0.18) + ' ' + L; p.animate([{ strokeDashoffset: L * 1.18 }, { strokeDashoffset: 0 }], { duration: 8000, iterations: Infinity }); }
+  }
+  countUp() {
+    const t0 = performance.now(), d = 1800;
+    const step = now => { const p = Math.min(1, (now - t0) / d), e = 1 - Math.pow(1 - p, 4);
+      this.setState({ n1: Math.round(23 * e), n2: Math.round(196 * e), n3: Math.round(57 * e) }); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  frame(t) {
+    const root = this.rootRef.current; if (!root) return;
+    const vh = window.innerHeight, vw = window.innerWidth, sec = t / 1000, top = window.scrollY || document.documentElement.scrollTop || 0;
+    const scrollTop = -root.getBoundingClientRect().top;
+    root.querySelectorAll('[data-marq]').forEach(el => {
+      const half = el.scrollWidth / 2 || 1, s = +el.getAttribute('data-marq');
+      const x = ((scrollTop * s + sec * 8) % half + half) % half;
+      el.style.transform = 'translate3d(' + (-x).toFixed(1) + 'px,0,0)';
+    });
+    const cs = this.ctaSecRef.current;
+    if (cs) {
+      const r = cs.getBoundingClientRect();
+      const raw = this.motion ? Math.max(0, Math.min(1, (vh * 0.85 - (r.top + r.height / 2)) / (vh * 0.4))) : 1;
+      this.spv = (this.spv || 0) + (raw - (this.spv || 0)) * 0.12;
+      const x = this.spv, k = 0.5, back = x < 0.001 ? 0 : 1 + (k + 1) * Math.pow(x - 1, 3) + k * Math.pow(x - 1, 2);
+      cs.style.setProperty('--sp', back.toFixed(4));
+      cs.style.setProperty('--sp2', (1 - Math.pow(1 - x, 3)).toFixed(4));
+      cs.style.setProperty('--ds', Math.min(1, vw / 1500, vh / 900).toFixed(3));
+      if (this.ctaRef.current) this.ctaRef.current.style.color = x > 0.45 ? '#ffffff' : '#1d1519';
+    }
+  }
+  prog(ref) {
+    const el = ref.current; if (!el) return 0;
+    const r = el.getBoundingClientRect(), span = r.height - window.innerHeight;
+    return span <= 0 ? 0 : Math.max(0, Math.min(1, -r.top / span));
+  }
+  tick() {
+    const vh = window.innerHeight, root = this.rootRef.current; if (!root) return;
+    const st = -root.getBoundingClientRect().top;
+    root.style.setProperty('--hp', this.motion ? Math.max(0, Math.min(1, st / (vh * 0.75))).toFixed(3) : 0);
+    const ink = this.inkRef.current;
+    if (ink) {
+      const r = ink.getBoundingClientRect(), p = Math.max(-1, Math.min(1, (r.top + r.height * 0.3 - vh / 2) / vh));
+      ink.querySelectorAll('[data-sx]').forEach(el => { el.style.transform = this.motion ? 'translate3d(' + (p * +el.getAttribute('data-sx')).toFixed(2) + 'vw,0,0)' : ''; });
+    }
+    root.querySelectorAll('[data-par]').forEach(el => {
+      const r = el.getBoundingClientRect(), off = r.top + r.height / 2 - vh / 2;
+      el.style.translate = this.motion ? '0 ' + (off * +el.getAttribute('data-par')).toFixed(1) + 'px' : '';
+    });
+    root.querySelectorAll('[data-par-img]').forEach(img => {
+      const r = img.parentElement.getBoundingClientRect(); if (r.bottom < -50 || r.top > vh + 50) return;
+      img.style.transform = this.motion ? 'translateY(' + (((r.top + r.height / 2 - vh / 2) / vh) * -6).toFixed(2) + '%)' : '';
+    });
+    const cards = this.stackRef.current ? [...this.stackRef.current.querySelectorAll('[data-card]')] : [];
+    cards.forEach((cd, i) => {
+      const nx = cards[i + 1]; if (!nx || !this.motion) { cd.style.transform = ''; cd.style.filter = ''; return; }
+      const a = cd.getBoundingClientRect(), b = nx.getBoundingClientRect(), p = Math.max(0, Math.min(1, 1 - (b.top - a.top) / a.height));
+      cd.style.transform = 'scale(' + (1 - p * 0.03).toFixed(3) + ')'; cd.style.filter = 'brightness(' + (1 - p * 0.04).toFixed(3) + ')';
+    });
+    const cs = this.state.narrow || !this.motion ? 8 : Math.min(8, Math.floor(this.prog(this.callRef) * 9.2));
+    if (cs !== this.state.cs) this.setState({ cs });
+  }
+
+  renderVals() {
+    const { cs, narrow, faq } = this.state;
+    const region = this.state.region ?? this.props.defaultRegion ?? 'Canada';
+    const bars = Array.from({ length: 24 }, (_, i) => ({ delay: '-' + ((i * 0.37) % 1.1).toFixed(2) + 's' }));
+    const stepData = [
+      ['Clinical event', 'trigger', 'A lab result arrives, a follow-up comes due, or a patient misses a visit. Clarus picks it up the moment it happens.', [['Lab results received', 'lab_results_received'], ['Abnormal result', 'abnormal_result_detected'], ['Appointment missed', 'appointment_missed'], ['Prescription expiring', 'prescription_expiring']]],
+      ['The workflow reads the record', 'condition', 'Your workflow checks who the patient is, what is due, and whether they should be contacted at all.', [['Patient record', 'patients'], ['Conditions and medications', 'conditions'], ['Reason for the call', 'call_reason'], ['Practice hours', 'practice_settings']]],
+      ['Eight safety gates', 'safety_policy', 'Calling hours, attempt caps, a kill switch and a fixed list of call reasons. If any check fails, nothing goes out.', [['Kill switch', 'calls_enabled'], ['Calling window', 'calling_hours'], ['Attempt cap', 'max_attempts'], ['Fixed call reasons', 'reason_vocab']]],
+      ['A call in their language', 'call_patient', 'An AI voice call, WhatsApp or SMS. Voice and language follow the country code of the number it dials.', [['+880', 'বাংলা'], ['+971 / +974', 'العربية'], ['+1', 'English'], ['WhatsApp · SMS', 'messages']]],
+      ['Outcome written back', 'audit_log', 'The booking lands on your calendar seconds after hang-up, with transcript and outcome logged against the patient.', [['Booking on the calendar', 'appointments'], ['Transcript saved', 'call_logs'], ['Summary to the doctor', 'send_notification'], ['Audit entry', 'audit_log']]],
+    ];
+    const steps = stepData.map(([title, code, body, chips], i) => {
+      const dark = i === 3;
+      return { n: i + 1, title, code, body, chips: chips.map(([a, b]) => ({ a, b })), top: (90 + i * 22) + 'px', mb: i === 4 ? '24vh' : '22vh',
+        bg: dark ? 'rgba(29,21,25,0.8)' : 'rgba(255,255,255,0.46)', fg: dark ? '#f6f5f1' : '#1d1519',
+        border: dark ? 'rgba(29,21,25,0.9)' : 'rgba(255,255,255,0.95)', rule: dark ? 'rgba(255,255,255,0.14)' : 'rgba(29,21,25,0.12)' };
+    });
+    const script = [
+      ['agent', 'Hello, this is an automated call from Lakeside Clinic on behalf of Dr. Karim. Am I speaking with Ayesha?'],
+      ['patient', 'Yes, this is Ayesha.'],
+      ['agent', "You're due for a follow-up. I can offer Thursday at 10:30 or 11:00."],
+      ['patient', 'Could I come on Wednesday instead?'],
+      ['agent', "Wednesday is fully booked, I'm afraid. Thursday at 10:30 is still open."],
+      ['patient', 'Thursday at 10:30 works.'],
+      ['agent', "Done — you're booked for Thursday at 10:30. See you then."],
+    ];
+    const lines = script.map(([who, text], i) => {
+      const on = cs >= i + 1, a = who === 'agent';
+      return { who: a ? 'CLARUS AGENT · বাংলা' : 'PATIENT', text, justify: a ? 'flex-start' : 'flex-end',
+        bg: a ? 'rgba(255,255,255,0.85)' : '#1d1519', fg: a ? '#1d1519' : '#f6f5f1', op: on ? 1 : 0, tf: on ? 'translateY(0)' : 'translateY(14px)' };
+    });
+    const booked = cs >= 8, offering = cs >= 3 && !booked, wedCheck = cs >= 5 && cs <= 6;
+    const busy = { label: '', bg: 'rgba(29,21,25,0.1)', fg: 'transparent', border: '1px solid transparent', tf: 'none' };
+    const free = { label: '', bg: 'transparent', fg: 'transparent', border: '1px solid transparent', tf: 'none' };
+    const mk = p => p.split('').map(ch => ch === 'x' ? busy : free);
+    const thu = mk('x.x..x');
+    thu[1] = booked ? { label: '10:30 · Ayesha', bg: '#c23b3b', fg: '#fff', border: '1px solid #c23b3b', tf: 'scale(1)' }
+      : offering ? { label: 'offered', bg: 'transparent', fg: '#6b6468', border: '1px dashed rgba(29,21,25,0.45)', tf: 'scale(.96)' } : free;
+    const days = [
+      { label: 'Mon', slots: mk('x..x.x') }, { label: 'Tue', slots: mk('.xx..x') },
+      { label: 'Wed', slots: mk('xxxxxx'), ring: wedCheck ? '0 0 0 1.5px #1d1519' : '' },
+      { label: 'Thu', slots: thu }, { label: 'Fri', slots: mk('......'), closed: true },
+    ].map(d => ({ ...d, ring: d.ring || '0 0 0 0 transparent', labelColor: d.label === 'Thu' ? '#1d1519' : '#6b6468',
+      bg: d.closed ? 'repeating-linear-gradient(135deg,rgba(29,21,25,0.06) 0 6px,transparent 6px 12px)' : 'rgba(29,21,25,0.03)' }));
+    const langCards = [
+      { code: '+880', where: 'BANGLADESH', native: 'বাংলা', line: 'আপনার ফলো-আপ বৃহস্পতিবার সাড়ে দশটায়।', font: "'Geist',sans-serif", dir: 'ltr', bg: 'rgba(255,255,255,0.4)', fg: '#1d1519', border: 'rgba(255,255,255,0.95)', liq: '1' },
+      { code: '+971 / +974', where: 'UAE · QATAR', native: 'العربية', line: 'موعد المتابعة يوم الخميس الساعة العاشرة والنصف.', font: "'Geist',sans-serif", dir: 'rtl', bg: '#1d1519', fg: '#f6f5f1', border: '#1d1519', liq: 'dark' },
+      { code: '+1', where: 'CANADA', native: 'English', line: 'Your follow-up is Thursday at 10:30.', font: "'Instrument Serif',serif", dir: 'ltr', bg: 'rgba(255,255,255,0.4)', fg: '#1d1519', border: 'rgba(255,255,255,0.95)', liq: '1' },
+    ].map((c, i) => ({ ...c, delay: i * 120, bars: Array.from({ length: 18 }, (_, j) => ({ delay: '-' + (((j + i * 5) * 0.29) % 1.2).toFixed(2) + 's' })) }));
+    const nodes = [
+      { kind: 'TRIGGER', title: 'Follow-Up Due', bg: '#1d1519', fg: '#f6f5f1', border: '#1d1519', track: 'rgba(255,255,255,0.2)', dot: '#fff' },
+      { kind: 'ACTION', title: 'Call Patient', bg: 'rgba(255,255,255,0.75)', fg: '#1d1519', border: 'rgba(29,21,25,0.1)', track: 'rgba(29,21,25,0.1)', dot: '#1d1519' },
+      { kind: 'ACTION', title: 'Schedule Appointment', bg: 'rgba(255,255,255,0.75)', fg: '#1d1519', border: 'rgba(29,21,25,0.1)', track: 'rgba(29,21,25,0.1)', dot: '#1d1519' },
+      { kind: 'ACTION', title: 'Send Summary', bg: 'rgba(255,255,255,0.75)', fg: '#1d1519', border: 'rgba(29,21,25,0.1)', track: 'rgba(29,21,25,0.1)', dot: '#c23b3b' },
+    ].map((n, i) => ({ ...n, delay: (i * 0.6) + 's' }));
+    const glass = { bg: 'rgba(255,255,255,0.4)', fg: '#1d1519', border: 'rgba(255,255,255,0.95)', liq: '1' };
+    const ink = { bg: '#1d1519', fg: '#f6f5f1', border: '#1d1519', liq: 'dark' };
+    const features = [
+      ['LIVE CALENDAR', 'Real openings only', 'Free slots and any time the patient proposes are checked against your hours and bookings.', ink],
+      ['PDF INTAKE', 'From a lab report', 'Parsed locally with fixed patterns. The document is never sent to an AI model.', glass],
+      ['PRACTICE SETTINGS', 'Your hours, your names', 'Opening hours, appointment length, and the doctor and clinic names the agent says.', glass],
+      ['APPOINTMENTS', 'One week view', 'Every booking, AI-booked and hand-added, in clinic time and updating live.', glass],
+      ['AUDIT TRAIL', 'Every run on record', 'Execution logs, call transcripts and an audit log for each practice.', glass],
+      ['NO CODE', 'Built by clinicians', 'Your team draws the workflow once. No developers, no extra staff.', glass],
+    ].map(([tag, title, body, t], i) => ({ tag, title, body, ...t, delay: (i % 3) * 100 }));
+    const gates = [
+      ['Calls kill switch', 'One switch stops every call at once.'],
+      ['Calling hours', 'Only inside your clinic’s calling window.'],
+      ['Attempt cap', 'No patient is called past the set limit.'],
+      ['Fixed call reasons', 'Only reasons on an approved list.'],
+      ['Injection defences', 'Patient data can’t rewrite the agent.'],
+      ['Practice-scoped data', 'Every query is scoped to one practice.'],
+      ['Signed results', 'Outcomes need a valid signature.'],
+      ['Live-call-only tools', 'Calendar lookups only during a live call.'],
+    ].map(([title, body], i) => ({ n: i + 1, title, body }));
+    const team = [
+      { name: 'Mohammed Faraz Kabbo', role: 'CEO', bio: 'Co-founder · AI and software engineering', img: 'assets/team-kabbo.jpg' },
+      { name: 'Rubaiya Hassin Farheen', role: 'COO', bio: 'Co-founder · Six years in operations, finance and growth', img: 'assets/team-rubaiya.jpg' },
+      { name: 'MD Rahbir Mahdi', role: 'CTO', bio: 'Co-founder · AI and software engineering', img: 'assets/team-rahbir.jpg' },
+    ].map((m, i) => ({ ...m, delay: i * 120 }));
+    const priceTable = {
+      'Bangladesh': { p: ['৳6K', '৳25K', '৳50K+'], setup: 'Setup fee waived in Bangladesh.' },
+      'UAE': { p: ['$249', '$599', '$1,199'], setup: '$500 one-time setup.' },
+      'Qatar': { p: ['$249', '$599', '$1,249'], setup: '$500 one-time setup.' },
+      'Canada': { p: ['$249', '$599', '$1,249'], setup: '$600 one-time setup.' },
+    };
+    const pt = priceTable[region] || priceTable.Canada;
+    const regions = Object.keys(priceTable).map(label => ({ label, pick: () => this.setState({ region: label }),
+      bg: label === region ? '#1d1519' : 'transparent', fg: label === region ? '#fff' : '#3d3639' }));
+    const plans = [
+      ['Starter', 'Reminders that go out on their own.', ['WhatsApp and SMS reminders', 'Automatic recalls', 'Patient records and PDF intake', 'Audit trail']],
+      ['Growth', 'Workflows that fill your calendar.', ['Everything in Starter', 'Visual workflow builder', 'Slot filling from your calendar', 'Revenue reports']],
+      ['Practice', 'AI voice for multi-doctor clinics.', ['Everything in Growth', 'AI voice calls in the patient’s language', 'Multi-doctor and multi-branch', 'Priority support']],
+    ].map(([name, blurb, items], i) => {
+      const pop = i === 1;
+      return { name, cap: name.toUpperCase(), label: name.toUpperCase(), blurb, items, price: pt.p[i], popular: pop, delay: i * 120, liq: pop ? 'dark' : '1',
+        bg: pop ? '#1d1519' : 'rgba(255,255,255,0.4)', fg: pop ? '#f6f5f1' : '#1d1519', border: pop ? '#1d1519' : 'rgba(255,255,255,0.95)',
+        rule: pop ? 'rgba(255,255,255,0.14)' : 'rgba(29,21,25,0.1)', ctaBg: pop ? '#fff' : '#1d1519', ctaFg: pop ? '#1d1519' : '#fff' };
+    });
+    const faqData = [
+      ['Which languages does the agent speak?', 'It picks from the country code of the number it dials: +880 numbers hear Bangla, +971 and +974 hear Arabic, and +1 hears English.'],
+      ['Can it book a time that is already taken?', 'No. During the call it checks your clinic hours and existing appointments, offers only free times, and explains when a time the patient asks for won’t work.'],
+      ['Is patient data sent to an AI model?', 'Lab-report PDFs are parsed locally with fixed patterns and never sent to an AI model. Every query is scoped to your practice.'],
+      ['How do we stop calls?', 'A single kill switch stops every call. Calling hours, per-patient attempt caps and a fixed list of call reasons apply to every run.'],
+      ['Do we need new staff or developers?', 'No. Clinicians draw the workflow once in the visual builder, and every run, transcript and outcome is logged for you.'],
+    ];
+    const faqs = faqData.map(([q, a], i) => ({ q, a, rows: faq === i ? '1fr' : '0fr', rot: faq === i ? '45deg' : '0deg', toggle: () => this.setState({ faq: faq === i ? -1 : i }) }));
+    const g = this.state.grid, missRank = {};
+    for (let k = 0; k < 23; k++) missRank[(k * 37 + 11) % 100] = k;
+    const cells = Array.from({ length: 100 }, (_, i) => {
+      const miss = missRank[i] !== undefined;
+      if (g === 0) return { bg: 'transparent', ring: 'inset 0 0 0 1px rgba(255,255,255,0.14)', s: 0.6, delay: '0ms' };
+      if (g === 2 && miss) return { bg: 'transparent', ring: 'inset 0 0 0 1.5px #ff7a6e', s: 0.82, delay: (missRank[i] * 55) + 'ms' };
+      return { bg: 'rgba(246,245,241,0.85)', ring: 'inset 0 0 0 0 transparent', s: 1, delay: g === 1 ? (i * 12) + 'ms' : '0ms' };
+    });
+    const trust = [['SAFETY', '8 checks, all fail closed'], ['RECORDS', 'Audit trail on every call'], ['PRIVACY', 'Lab PDFs never sent to AI'], ['COMPLIANCE', 'In-region hosting · ISO 27001 & SOC 2 budgeted']].map(([k, v], i) => ({ k, v, delay: i * 90 }));
+    const ringDots = Array.from({ length: 8 }, (_, i) => ({ a: i * 45, d: (i * 0.4) + 's' }));
+    return {
+      cardH: narrow ? 'auto' : 'min(52vh,420px)',
+      gridRef: this.gridRef, ecgRef: this.ecgRef, cells, trust, ringDots, wide: !narrow, safeH2W: narrow ? '900px' : 'min(900px, calc(100% - 270px))',
+      rootRef: this.rootRef, inkRef: this.inkRef, statsRef: this.statsRef, stackRef: this.stackRef, callRef: this.callRef,
+      ctaRef: this.ctaRef, ctaSecRef: this.ctaSecRef, drops: this.drops,
+      bars, bars20: bars.slice(0, 20), eightDots: [1, 2, 3, 4, 5, 6, 7, 8], steps, lines, days, langCards, nodes, features, gates, team, regions, plans, faqs,
+      n1: this.state.n1, n2: this.state.n2, n3: this.state.n3, setupNote: pt.setup,
+      stickyPos: narrow ? 'relative' : 'sticky', callH: narrow ? 'auto' : '320vh', callFill: (cs / 8 * 100) + '%',
+      callStatus: cs === 0 ? 'Dialling +880 …' : booked ? 'Call ended · appointment booked' : 'On call · Ayesha R. · বাংলা',
+      statusDot: cs === 0 ? '#a19c9f' : booked ? '#1d1519' : '#c23b3b', waveOp: cs === 0 || booked ? 0.15 : 1,
+      tool1: cs >= 3 ? '#1d1519' : 'transparent', tool1fg: cs >= 3 ? '#fff' : '#1d1519',
+      tool2: cs >= 5 ? '#1d1519' : 'transparent', tool2fg: cs >= 5 ? '#fff' : '#1d1519',
+    };
+  }
+}
+</script>
+</body>
+</html>
