@@ -1,18 +1,25 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# dependencies
+node_modules/
 
-# Other files and folders
-.settings/
+# next.js
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# env
+.env*
+!.env.example
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# testing
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+.vercel
+/.screenshots/
